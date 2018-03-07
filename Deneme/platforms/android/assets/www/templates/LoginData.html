@@ -1,0 +1,32 @@
+<ion-view view-title="Örnek">
+  <ion-content>
+ 	<form>
+      <div class="list">
+        <label class="item item-input">
+        	<span class="input-label">Ad</span>
+            <input type="text" ng-model="logData.ad">
+        </label>
+        <label class="item item-input">
+        	<span class="input-label">Soyad</span>
+            <input type="text" ng-model="logData.soyad">
+        </label>
+         <label class="item item-input">
+        	<span class="input-label">Yaş</span>
+            <input type="number" ng-model="logData.yas">
+        </label>
+        <label class="item item-input">
+        	<span class="input-label">Admin mi?</span>
+        <ion-list>
+            <ion-radio ng-model="logData.ISADMIN" value="'evet'">Evet</ion-radio>
+            <ion-radio ng-model="logData.ISADMIN" value="'hayir'">Hayır</ion-radio>
+        </ion-list>
+        </label>
+        <label ng-bind="loginData.Username"></label>
+        <label class="item">
+        	<button class="button button-block button-positive" ng-click="Kayit(logData)" type="button">Kaydet
+        	</button>
+        </label>
+      </div>
+      </form>   
+  </ion-content>
+</ion-view>
