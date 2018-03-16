@@ -198,12 +198,12 @@ angular.module('baseController', ['ionic'])
           $scope.duzenlenecekKisi = kisi;
           $scope.kisiDuzenle.show();
 
-          alert(JSON.stringify(kisi));
+          
      }
      
      $scope.kisiDuzenleme = function(kisi)
      {
-             alert(JSON.stringify(kisi));
+             
 
               angular.forEach($scope.kisiler, function(kisim, key){
                  if(kisim.id == kisi.id){
@@ -226,8 +226,7 @@ angular.module('baseController', ['ionic'])
     $scope.Sil=function(id)
     {  
 
-        var gelen=JSON.stringify($scope.kisiler);
-        alert(gelen);
+        
         var json=JSON.parse(gelen);
         for (var i = 0; i < json.length; i++) {
         if(json[i].id == id)

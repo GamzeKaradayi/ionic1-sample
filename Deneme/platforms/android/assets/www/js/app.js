@@ -89,7 +89,7 @@ angular.module('starter', ['ionic','baseController','ngCordova'])
       
     $urlRouterProvider.otherwise(function ($injector, $location) {
         var $state = $injector.get("$state");
-        $state.go("Login");
+        $state.go("Kisiler");
     });
 
 });

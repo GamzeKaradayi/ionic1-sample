@@ -1,6 +1,25 @@
+<div class="bar bar-header bar-positive" style="margin-bottom:40px;">
+  <h1 class="title">Login</h1>
+</div>
+<style type="text/css">
+  .loginLogo{
+    display: block;
+   margin-left: auto;
+   margin-right: auto;
+  width: 250px;
+  height: 250px;
+   padding:12px;
+  
+  }
+  .loginForm{
+    margin-top: 20px;
+    padding: 10px;
+  }
+</style>
 <ion-view view-title="Örnek">
-  <ion-content>
-	<form>
+  <ion-content class="has-header">
+     <img src="img/ionic.png" class="loginLogo" />
+	<form class="loginForm">
       <div class="list">
         <label class="item item-input">
         	<span class="input-label">Ad</span>
@@ -17,5 +36,8 @@
         </label>
       </div>
       </form>
+      <div class="bar bar-footer bar-default">
+  <div class="title">IO - Sample</div>
+</div>
   </ion-content>
 </ion-view>

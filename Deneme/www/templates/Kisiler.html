@@ -1,6 +1,8 @@
-<ion-view view-title="Örnek">
-	<ion-content>
-
+<div class="bar bar-header bar-positive" style="margin-bottom:40px;">
+  <h1 class="title">Kişiler</h1>
+</div>
+      <ion-view view-title="Örnek">
+    <ion-content class="has-header">
      <div class="bar bar-header item-input-inset">
           <label class="item-input-wrapper">
         <i class="icon ion-ios-search placeholder-icon"></i>
@@ -8,60 +10,47 @@
         ng-model="settings.kisi">
         </label>
         
-      <button class="button button-clear">
+      <button class="button button-default">
            Arama
        </button>
         </div> 
-
-        <button class="button button-block button-calm" ng-click="kisiEkleModal.show()">
-               Yeni Kişi Ekle
-            </button>
+        <button class="button button-block outline" ng-click="kisiEkleModal.show()">Yeni Kişi Ekle</button>
      
-
       <div class="list card" ng-repeat="k in kisiler | filter:settings.kisi | startFrom:settings.currentPage*settings.pageSize | limitTo:settings.pageSize">
-
-      	<div>
-
-        <div class="button-bar">
-      		<a class="button button-assertive" ng-click="Sil(k.id)">
-      			Sil
-      		</a>
-      	
-      		<a class="button button-energized" ng-click="Duzenle(k)">
-      			Duzenle
-      		</a>
-
-        </div>
-      	   
-
+        <div>
+           
       <div class="item item-avatar">
-
-      <h2>AD: {{k.ad}}</h2>
-      <p>NO: {{k.id}}</p>
+        <img src="img/ionic.png"/>
+      <div>
+       <p>NO: {{k.id}}</p>
+       <p>AD: {{k.ad}}</p>
+       <p>SOYAD: {{k.soyad}}</p>
+       <p>EMAİL: {{k.email}}</p>
       </div>
+      
+      <div>
 
-      <div class="item item-body">
-         <p>SOYAD: {{k.soyad}}</p>
-         <p>EMAİL: {{k.email}}</p>
-         
-      </div>
+   
 
-         </div>
+ <a  ng-click="Sil(k.id)" class="button icon ion-trash-a"></a>
+ <a   ng-click="Duzenle(k)" class="button icon ion-edit"></a>
 
+        
     
-
+ 
+      </div>
+      </div>
+         </div>
+    
        </div>
-            <button ng-disabled="settings.currentPage == 0" ng-click="settings.currentPage=settings.currentPage-1">
-                Previous
-         </button> {{settings.currentPage+1}}/{{numberOfPages()}}
-          <button ng-disabled="settings.currentPage >= getData().length/settings.pageSize - 1" ng-click="settings.currentPage=settings.currentPage+1">
+        <button class="button button-default"  ng-disabled="settings.currentPage == 0" ng-click="settings.currentPage=settings.currentPage-1">
+        Previous</button> {{settings.currentPage+1}}/{{numberOfPages()}}
+          <button class="button button-default" ng-disabled="settings.currentPage >= getData().length/settings.pageSize - 1" ng-click="settings.currentPage=settings.currentPage+1">
         Next
          </button>
-
       <!-- <button class="button button-calm" ng-click="kisiEkleModal.show()">
                Yeni Kişi Ekle
             </button> -->
-
  <script id="templates/modal.html" type="text/ng-template">
       <ion-modal-view>
         <ion-header-bar class="bar bar-header bar-positive">
@@ -87,7 +76,6 @@
         </ion-content>
       </ion-modal-view>
     </script>
-
 <script id="templates/Duzenlemodal.html" type="text/ng-template">
       <ion-modal-view>
         <ion-header-bar class="bar bar-header bar-positive">
@@ -98,22 +86,26 @@
           <div class="list">
             <label class="item item-input">
               <span class="input-label">Ad</span>
-              <input type="hidden" ng-model="duzenlenecekKisi.id" />
-              <input ng-model="duzenlenecekKisi.ad" type="text">
+              <input type="hidden" ng-model="duzenlenecekKisi.id" placeholder="Id"/>
+              <input ng-model="duzenlenecekKisi.ad" type="text" placeholder="Kullanıcı Ad">
             </label>
             <label class="item item-input">
               <span class="input-label">Soyad</span>
-              <input ng-model="duzenlenecekKisi.soyad" type="text">
+              <input ng-model="duzenlenecekKisi.soyad" type="text" placeholder="Kullanıcı Soyad" >
             </label>
             <label class="item item-input">
               <span class="input-label">Email</span>
-              <input ng-model="duzenlenecekKisi.email" type="text">
+              <input ng-model="duzenlenecekKisi.email" type="text" placeholder="Email">
             </label>
-            <button class="button button-full button-positive" ng-click="kisiDuzenleme(duzenlenecekKisi)">Kaydet</button>
+            <button class="button button-full button-danger" ng-click="kisiDuzenleme(duzenlenecekKisi)">Kaydet</button>
           </div>
         </ion-content>
+        <ion-footer>
+        <ion-toolbar>
+            <ion-title>IO-Sample</ion-title>
+        </ion-toolbar>
+</ion-footer>
       </ion-modal-view>
     </script>
-
      </ion-content>
 </ion-view>
