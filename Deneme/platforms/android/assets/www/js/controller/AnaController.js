@@ -1,100 +1,5 @@
 angular.module('baseController', ['ionic'])
-.controller('LoginCtrl', function ($scope, $cordovaFile, $state, $http) {
-
-    $scope.loginData = { ad: '', sifre: '' }
-
-    $scope.doLogin = function (a) {
-
-        if (a.ad == 'Gamze' && a.sifre == '123')
-            $state.go('LoginData', { 'data': $scope.loginData });
-        else
-            alert("Bilgileri kontrol ediniz.");
-
-
-        $cordovaFile.checkFile(cordova.file.externalApplicationStorageDirectory, "kullanici.txt")
-       .then(function (success) {
-
-           $http.get(cordova.file.externalApplicationStorageDirectory + "kullanici.txt")
-          .success(function (data) {
-
-              var gelenData = JSON.stringify(data);
-              var json = JSON.parse(gelenData);
-
-              alert("Ad: " + json.ad + "Soyad: " + json.soyad + "Yaş: " + json.yas + "Admin: " + json.ISADMIN);
-
-          }, function (error) {
-              alert(JSON.stringify(error));
-          });
-
-       }, function (error) {
-
-           alert("Dosya bulunamadı");
-       });
-
-    };
-})
-
-.controller('PlaylistsCtrl', function ($scope) {
-
-    $scope.playlists = [
-      { title: 'Ali', id: 1 },
-      { title: 'Ayse', id: 2 },
-      { title: 'Tanem', id: 3 },
-      { title: 'Gamze', id: 4 }
-    ];
-
-}
-)
-
-.controller('LoginDataCtrl', function ($scope, $cordovaFile, $stateParams, $state) {
-
-    var datam = { ad: '', soyad: '', yas: '', ISADMIN: '' };
-
-    $scope.logData = { ad: '', soyad: '', yas: '', ISADMIN: '' };
-    var gelen = $stateParams.data;
-    alert("Gelen:" + gelen.ad);
-    $scope.logData.ad = gelen.ad;
-
-
-    $scope.Kayit = function (a) {
-
-        alert("Ad: " + a.ad + "Soyad: " + a.soyad + "Yaş: " + a.yas + "Admin: " + a.ISADMIN);
-
-        var datam = { ad: '', soyad: '', yas: '', ISADMIN: '' };
-        datam.ad = a.ad;
-        datam.soyad = a.soyad;
-        datam.yas = a.yas;
-        datam.ISADMIN = a.ISADMIN;
-
-
-        $cordovaFile.writeFile(cordova.file.externalApplicationStorageDirectory, "kullanici.txt", datam, true)
-          .then(function (success) {
-
-              alert(" SUCCESDosya yolu :" + cordova.file.externalApplicationStorageDirectory + JSON.stringify(success));
-
-          }, function (error) {
-
-              alert("Dosya yolu :" + "Dosya yolu :" + JSON.stringify(error));
-
-
-          });
-    }
-
-
-})
-
-
-.controller('YonlendirCtrl', function ($scope, $stateParams) {
-
-    var gelen = $stateParams.Username;
-    $scope.ad = gelen;
-    $state.go("Yonlendir", { "Ad": a.ad, "Soyad": a.soyad, "Yas": a.yas });
-}
-)
-
-
-
-.controller('KisilerCtrl', function ($scope, $ionicModal, $filter, $state, $http) {
+.controller('KisilerCtrl', function ($scope, $ionicModal, $filter, $state) {
 
 
       $scope.kisiler = [
@@ -225,16 +130,17 @@ angular.module('baseController', ['ionic'])
 
     $scope.Sil=function(id)
     {  
-
-        
-        var json=JSON.parse(gelen);
+       
+        var gelen=JSON.stringfy($scope.kisiler);
+        alert(gelen);
+        var json = JSON.parse(gelen);
         for (var i = 0; i < json.length; i++) {
         if(json[i].id == id)
         {
         json.splice(i,1);
         alert("Başarıyla silindi");
         }
-     }
+      }
         $scope.kisiler=json;
     }
 
